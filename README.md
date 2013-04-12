@@ -46,7 +46,7 @@ In app/config/config.php
 ### Example for supervisor.conf
 
 Add the following  
-My_Ratchet_Ws is fuel/app/classes/my/ratchet.php that extends Ratchet_Ws
+My_Ratchet_Ws is fuel/app/classes/my/ratchet/ws.php that extends Ratchet_Ws
 
 	[program:ratchet]
 	command                 = php oil r ratchet:ws My_Ratchet_Ws 8080
