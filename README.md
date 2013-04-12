@@ -2,7 +2,7 @@
 
 * WebSocket Server by [Ratchet](http://socketo.me/)
 * [ZeroMQ](http://www.zeromq.org/) is required
-* [Samples] https://github.com/mp-php/fuel-ratchet
+* [Samples](https://github.com/mp-php/fuel-ratchet)
 
 ---
 
