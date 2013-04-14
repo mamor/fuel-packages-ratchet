@@ -49,8 +49,8 @@ Description:
   Task of Ratchet Server
 
 Commands:
-  php oil refine ratchet:ws <class_name> <port>
-  php oil refine ratchet:wamp <class_name> <port> <ZeroMQ port>
+  php oil refine ratchet:ws <class_name>
+  php oil refine ratchet:wamp <class_name>
   php oil refine ratchet:help
 
 HELP;
@@ -62,15 +62,29 @@ HELP;
 	 *
 	 * Usage (from command line):
 	 * 
-	 * php oil r ratchet:ws <class_name> <port>
+	 * php oil r ratchet:ws <class_name>
 	 * 
 	 * Note:
 	 * http://socketo.me/docs/hello-world
 	 * http://socketo.me/docs/websocket
 	 */
-	public static function ws($class_name = null, $port = null)
+	public static function ws($class_name = null)
 	{
-		if ( ! class_exists($class_name) || ! is_numeric($port))
+		/**
+		 * Check class name
+		 */
+		if ( ! class_exists($class_name))
+		{
+			static::help();
+			exit();
+		}
+
+		$config = \Ratchet::get_config($class_name);
+
+		/**
+		 * Check port
+		 */
+		if ( ! is_numeric($config['port']))
 		{
 			static::help();
 			exit();
@@ -79,7 +93,7 @@ HELP;
 		$class = new $class_name;
 
 		$server = \Ratchet\Server\IoServer::factory(
-			new \Ratchet\WebSocket\WsServer($class), $port);
+			new \Ratchet\WebSocket\WsServer($class), $config['port']);
 
 		$server->run();
 	}
@@ -89,15 +103,38 @@ HELP;
 	 *
 	 * Usage (from command line):
 	 * 
-	 * php oil r ratchet:wamp <class_name> <port> <ZeroMQ port>
+	 * php oil r ratchet:wamp <class_name>
 	 * 
 	 * Note:
 	 * http://socketo.me/docs/push
 	 * http://socketo.me/docs/wamp
 	 */
-	public static function wamp($class_name = null, $port = null, $zmq_port = null)
+	public static function wamp($class_name = null)
 	{
-		if ( ! class_exists($class_name) || ! is_numeric($port) || ! is_numeric($zmq_port))
+		/**
+		 * Check class name
+		 */
+		if ( ! class_exists($class_name))
+		{
+			static::help();
+			exit();
+		}
+
+		$config = \Ratchet::get_config($class_name);
+
+		/**
+		 * Check port
+		 */
+		if ( ! is_numeric($config['port']))
+		{
+			static::help();
+			exit();
+		}
+
+		/**
+		 * Check zmq port
+		 */
+		if ( ! is_numeric($config['zmq_port']))
 		{
 			static::help();
 			exit();
@@ -114,7 +151,7 @@ HELP;
 		$pull = $context->getSocket(\ZMQ::SOCKET_PULL);
 
 		// Binding to 127.0.0.1 means the only client that can connect is itself
-		$pull->bind('tcp://127.0.0.1:'.$zmq_port);
+		$pull->bind('tcp://127.0.0.1:'.$config['zmq_port']);
 		$pull->on('message', array($class, 'callback'));
 
 		/**
@@ -123,7 +160,7 @@ HELP;
 		$socket = new \React\Socket\Server($loop);
 
 		// Binding to 0.0.0.0 means remotes can connect
-		$socket->listen($port, '0.0.0.0');
+		$socket->listen($config['port'], '0.0.0.0');
 		$server = new \Ratchet\Server\IoServer(
 			new \Ratchet\WebSocket\WsServer(
 				new \Ratchet\Wamp\WampServer($class)), $socket);

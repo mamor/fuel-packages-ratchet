@@ -12,6 +12,38 @@ namespace Ratchet;
 class Ratchet
 {
 	/**
+	 * initialize
+	 */
+	public static function _init()
+	{
+		\Config::load('ratchet', true);
+	}
+
+	/**
+	 * Get config for class
+	 *
+	 * @param  $class_name config key
+	 */
+	public static function get_config($class_name)
+	{
+		return array_merge(
+			\Config::get('ratchet.classes.default', array()),
+			\Config::get('ratchet.classes.'.$class_name, array())
+		);
+	}
+
+	/**
+	 * Get WebSocket URI
+	 *
+	 * @param  $class_name config key
+	 */
+	public static function get_uri($class_name)
+	{
+		$config = static::get_config($class_name);
+		return 'ws://'.$config['domain'].':'.$config['port'];
+	}
+
+	/**
 	 * Share session with http server
 	 *
 	 * @param  $conn \Ratchet\ConnectionInterface
