@@ -25,7 +25,7 @@ class Ratchet_Wamp implements \Ratchet\Wamp\WampServerInterface
 	}
 
 	public function onOpen(\Ratchet\ConnectionInterface $conn) {
-
+		$conn->session = Ratchet::get_session($conn);
 	}
 
 	public function onPublish(\Ratchet\ConnectionInterface $conn, $topic, $event, array $exclude, array $eligible) {

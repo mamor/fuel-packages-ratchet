@@ -25,7 +25,7 @@ class Ratchet_Ws implements \Ratchet\MessageComponentInterface
 	}
 
 	public function onOpen(\Ratchet\ConnectionInterface $conn) {
-
+		$conn->session = Ratchet::get_session($conn);
 	}
 
 }
