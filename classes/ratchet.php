@@ -74,7 +74,14 @@ class Ratchet
 		\Config::load('session', true);
 		\COnfig::set('session.match_ua', false);
 
-		$session = \Session::forge();
+		try
+		{
+			$session = \Session::forge();
+		}
+		catch (\Exception $e)
+		{
+			$session = null;
+		}
 
 		/**
 		 * Remove data
