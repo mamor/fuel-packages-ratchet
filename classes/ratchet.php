@@ -57,7 +57,7 @@ class Ratchet
 		/**
 		 * Set cookie
 		 */
-		$cookie = $conn->WebSocket->request->getHeader('Cookie');
+		$cookie = $conn->WebSocket->request->getHeader('cookie');
 		$data = \Guzzle\Parser\ParserRegistry::getInstance()
 			->getParser('cookie')->parseCookie($cookie);
 
@@ -66,7 +66,9 @@ class Ratchet
 		/**
 		 * Set remote address
 		 */
-		$_SERVER['REMOTE_ADDR'] = $conn->remoteAddress;
+		$x_forwarded_for = $conn->WebSocket->request->getHeader('x-forwarded-for');
+		$_SERVER['REMOTE_ADDR'] = ! empty($x_forwarded_for) ?
+			$x_forwarded_for : $conn->remoteAddress;
 
 		/**
 		 * Set user agent
