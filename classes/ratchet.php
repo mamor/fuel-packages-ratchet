@@ -40,7 +40,9 @@ class Ratchet
 	public static function get_uri($class_name)
 	{
 		$config = static::get_config($class_name);
-		return 'ws://'.$config['domain'].':'.$config['port'];
+
+		return ! empty($config['ws_uri']) ?
+			$config['ws_uri'] : 'ws://'.$config['domain'].':'.$config['port'];
 	}
 
 	/**
