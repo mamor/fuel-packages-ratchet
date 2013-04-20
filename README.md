@@ -72,7 +72,7 @@ Add the following
 My_Ratchet_Ws is fuel/app/classes/my/ratchet/ws.php that extends Ratchet_Ws
 
 	[program:ratchet]
-	command                 = php oil r ratchet:ws My_Ratchet_Ws 8080
+	command                 = php oil r ratchet:ws My_Ratchet_Ws
 	numprocs                = 1
 	autostart               = true
 	autorestart             = true
