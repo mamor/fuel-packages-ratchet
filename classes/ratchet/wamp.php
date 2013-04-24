@@ -12,8 +12,8 @@ namespace Ratchet;
 class Ratchet_Wamp implements \Ratchet\Wamp\WampServerInterface
 {
 
-	public function onCall(\Ratchet\ConnectionInterface $conn, $id, $topic, array $params) {
-
+	public function onOpen(\Ratchet\ConnectionInterface $conn) {
+		$conn->session = Ratchet::get_session($conn);
 	}
 
 	public function onClose(\Ratchet\ConnectionInterface $conn) {
@@ -24,8 +24,8 @@ class Ratchet_Wamp implements \Ratchet\Wamp\WampServerInterface
 
 	}
 
-	public function onOpen(\Ratchet\ConnectionInterface $conn) {
-		$conn->session = Ratchet::get_session($conn);
+	public function onCall(\Ratchet\ConnectionInterface $conn, $id, $topic, array $params) {
+
 	}
 
 	public function onPublish(\Ratchet\ConnectionInterface $conn, $topic, $event, array $exclude, array $eligible) {

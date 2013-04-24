@@ -12,6 +12,10 @@ namespace Ratchet;
 class Ratchet_Ws implements \Ratchet\MessageComponentInterface
 {
 
+	public function onOpen(\Ratchet\ConnectionInterface $conn) {
+		$conn->session = Ratchet::get_session($conn);
+	}
+
 	public function onClose(\Ratchet\ConnectionInterface $conn) {
 
 	}
@@ -22,10 +26,6 @@ class Ratchet_Ws implements \Ratchet\MessageComponentInterface
 
 	public function onMessage(\Ratchet\ConnectionInterface $from, $msg) {
 
-	}
-
-	public function onOpen(\Ratchet\ConnectionInterface $conn) {
-		$conn->session = Ratchet::get_session($conn);
 	}
 
 }
