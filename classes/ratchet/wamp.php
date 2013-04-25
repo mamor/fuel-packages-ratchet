@@ -40,7 +40,7 @@ class Ratchet_Wamp implements \Ratchet\Wamp\WampServerInterface
 
 	}
 
-	public function callback($json) {
+	public function zmqCallback($json) {
 
 	}
 }

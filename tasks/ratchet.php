@@ -152,7 +152,7 @@ HELP;
 
 		// Binding to 127.0.0.1 means the only client that can connect is itself
 		$pull->bind('tcp://127.0.0.1:'.$config['zmq_port']);
-		$pull->on('message', array($class, 'callback'));
+		$pull->on('message', array($class, 'zmqCallback'));
 
 		/**
 		 * Set up our WebSocket server for clients wanting real-time updates
