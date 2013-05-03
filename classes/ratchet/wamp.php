@@ -24,7 +24,7 @@ class Ratchet_Wamp implements \Ratchet\Wamp\WampServerInterface
 
 	}
 
-	public function onCall(\Ratchet\ConnectionInterface $conn, $id, $topic, array $params) {
+	public function onCall(\Ratchet\ConnectionInterface $conn, $id, $fn, array $params) {
 
 	}
 
