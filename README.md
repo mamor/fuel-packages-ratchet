@@ -17,7 +17,7 @@
 * git submodule add
 * Download zip
 
-If you use git submodule, you must install vendors
+If you use git submodule or download zip, you must install vendors
 
 	$ cd fuel/packages/ratchet
 	$ php composer.phar install
