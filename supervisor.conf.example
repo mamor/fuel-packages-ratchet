@@ -139,6 +139,7 @@ serverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket
 ;files = relative/directory/*.ini
 
 [program:ratchet]
+environment             = FUEL_ENV=production
 command                 = php oil r ratchet:ws My_Ratchet_Ws 8080
 numprocs                = 1
 autostart               = true
