@@ -1,6 +1,19 @@
 {
+	"name": "mp-php/fuel-packages-ratchet",
+	"type": "fuel-package",
 	"require": {
+		"composer/installers": "*",
+
 		"cboden/Ratchet": "0.2.*",
 		"react/zmq": "0.1.*"
-	}
+	},
+	"extra": {
+		"installer-name": "ratchet"
+	},
+	"authors": [
+		{
+			"name": "Mamoru Otsuka"
+		}
+	],
+	"license": "MIT"
 }

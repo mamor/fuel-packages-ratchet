@@ -12,11 +12,10 @@
 * [Windows](http://madroom-project.blogspot.jp/2013/04/xamppwindowszeromq.html)
 
 ## Install
-
-### Getting code
-
-	# In FuelPHP project root
-	$ git submodule add git://github.com/mp-php/fuel-packages-ratchet.git fuel/packages/ratchet
+### Setup to fuel/packages/ratchet
+* Use composer https://packagist.org/packages/mp-php/fuel-packages-ratchet
+* git submodule add
+* Download zip
 
 ### Install vendors
 
