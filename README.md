@@ -128,6 +128,16 @@ My_Ratchet_Ws is fuel/app/classes/my/ratchet/ws.php that extends Ratchet_Ws
 	status:
 		sudo supervisorctl -c fuel/packages/ratchet/supervisor.conf status
 
+	# make help
+	help:
+		@echo 'Commands:'
+		@echo '  make up'
+		@echo '  make down'
+		@echo '  make start-all'
+		@echo '  make stop-all'
+		@echo '  make restart-all'
+		@echo '  make status'
+
 ## License
 
 Copyright 2013, Mamoru Otsuka. Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
