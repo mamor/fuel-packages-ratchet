@@ -4,7 +4,7 @@
 	"require": {
 		"composer/installers": "*",
 
-		"cboden/Ratchet": "0.*",
+		"cboden/Ratchet": "0.2.*",
 		"react/zmq": "0.*"
 	},
 	"extra": {
